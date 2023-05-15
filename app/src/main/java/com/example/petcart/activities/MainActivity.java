@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.os.Bundle;
 import android.widget.GridLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.petcart.R;
 import com.example.petcart.adapters.CategoryAdapter;
@@ -25,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
 
     ProductAdapter productAdapter;
     ArrayList<Product> products;
+
+    private ImageView imageView;
+    private TextView nameTextView;
+    private TextView phoneTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

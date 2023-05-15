@@ -9,8 +9,12 @@ import android.os.Bundle;
 import com.example.petcart.adapters.CartAdapter;
 import com.example.petcart.databinding.ActivityCartBinding;
 import com.example.petcart.model.Product;
+import com.hishd.tinycart.model.Cart;
+import com.hishd.tinycart.model.Item;
+import com.hishd.tinycart.util.TinyCartHelper;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class CartActivity extends AppCompatActivity {
 
@@ -25,10 +29,16 @@ public class CartActivity extends AppCompatActivity {
 
         products = new ArrayList<>();
 
+        Cart cart = TinyCartHelper.getCart();
 
-        products.add(new Product("Product 1","","",45,35,2,1));
-        products.add(new Product("Product 1","","",45,35,2,1));
-        products.add(new Product("Product 1","","",45,35,2,1));
+        for(Map.Entry<Item, Integer> item : cart.getAllItemsWithQty().entrySet()) {
+            Product product = (Product) item.getKey();
+            int quantity = item.getValue();
+            product.setQuantity(quantity);
+
+            products.add(product);
+        }
+
 
         adapter = new CartAdapter(this, products);
 
